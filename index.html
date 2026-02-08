@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Chocolate Day Ruchi 🍫❤️</title>
+  <title>Happy Chocolate Day Ruchi 🍫</title>
 
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
@@ -12,19 +13,21 @@
       margin: 0;
       padding: 0;
       font-family: "Inter", sans-serif;
-      background: radial-gradient(circle at top, #3b1f14, #120805);
-      color: #fff3e6;
-      text-align: center;
+      background: radial-gradient(circle at top, #2a0a0a, #0b0505);
+      color: #fff6e9;
       overflow-x: hidden;
+      text-align: center;
     }
 
-    h1 {
+    h1, h2 {
       font-family: "Playfair Display", serif;
-      color: #ffcc8f;
-      letter-spacing: 1px;
     }
 
-    /* Landing */
+    .hidden {
+      display: none;
+    }
+
+    /* Landing Page */
     .landing {
       height: 100vh;
       display: flex;
@@ -36,40 +39,69 @@
 
     .landing h1 {
       font-size: 2.8rem;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      color: #ffcc7a;
+      letter-spacing: 1px;
     }
 
     .landing p {
       max-width: 520px;
-      font-size: 1.15rem;
-      line-height: 1.7;
+      font-size: 1.1rem;
+      line-height: 1.6;
       opacity: 0.9;
     }
 
-    .btn {
+    .open-btn {
       margin-top: 25px;
-      background: #ffcc8f;
+      background: #ffcc7a;
       border: none;
-      padding: 14px 30px;
+      padding: 14px 28px;
       border-radius: 40px;
       font-size: 1rem;
-      font-weight: 600;
+      color: #2a0a0a;
       cursor: pointer;
+      font-weight: 600;
       transition: 0.3s;
-      color: #120805;
       box-shadow: 0px 10px 25px rgba(0,0,0,0.6);
     }
 
-    .btn:hover {
+    .open-btn:hover {
       transform: scale(1.06);
-      background: #ffd9ab;
+      background: #ffd999;
     }
 
-    /* Main Chocolate Box */
-    .main {
+    /* Box Opening Animation */
+    .opening {
+      height: 100vh;
       display: none;
-      padding: 50px 15px 80px;
-      animation: fadeIn 1.2s ease-in-out;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .opening h2 {
+      font-size: 2.2rem;
+      color: #ffcc7a;
+      margin-bottom: 15px;
+    }
+
+    .opening p {
+      font-size: 1.15rem;
+      opacity: 0.9;
+      letter-spacing: 0.5px;
+    }
+
+    .dots {
+      margin-top: 15px;
+      font-size: 2rem;
+      color: #ffcc7a;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0.2; }
     }
 
     @keyframes fadeIn {
@@ -77,185 +109,257 @@
       to { opacity: 1; transform: translateY(0px); }
     }
 
-    .box-title {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
+    /* Progress Counter */
+    .progress {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 14px;
+      border-radius: 18px;
+      font-size: 0.85rem;
+      opacity: 0.75;
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: none;
     }
 
-    .subtext {
-      max-width: 650px;
+    /* Chocolate Grid */
+    .main {
+      display: none;
+      padding: 40px 15px 80px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .main h2 {
+      font-size: 2.4rem;
+      color: #ffcc7a;
+      margin-bottom: 10px;
+    }
+
+    .main p {
+      max-width: 600px;
       margin: auto;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
       opacity: 0.9;
-      line-height: 1.7;
-      margin-bottom: 35px;
     }
 
-    .choco-box {
+    .choco-grid {
+      margin-top: 35px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
       gap: 18px;
-      max-width: 520px;
-      margin: auto;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .choco {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 18px 10px;
       border-radius: 18px;
-      padding: 22px 15px;
       cursor: pointer;
       transition: 0.3s;
-      font-size: 1.05rem;
-      font-weight: 500;
-      box-shadow: 0px 12px 28px rgba(0,0,0,0.55);
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.6);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffcc7a;
+      user-select: none;
     }
 
     .choco:hover {
-      transform: scale(1.05);
-      background: rgba(255, 204, 143, 0.15);
-      border: 1px solid rgba(255, 204, 143, 0.5);
+      transform: scale(1.06);
+      background: rgba(255,255,255,0.12);
     }
 
-    /* Message Popup Area */
-    .popup {
+    .choco.opened {
+      opacity: 0.4;
+      cursor: default;
+      transform: scale(0.98);
+    }
+
+    /* Reveal Box */
+    .reveal-box {
       margin-top: 40px;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 25px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0px 15px 35px rgba(0,0,0,0.65);
+      backdrop-filter: blur(10px);
       display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      animation: fadeIn 0.8s ease-in-out;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
     }
 
-    .popup-text {
-      max-width: 650px;
-      font-size: 1.2rem;
+    .reveal-box p {
+      font-size: 1.15rem;
       line-height: 1.7;
       margin-bottom: 20px;
-      color: #fff3e6;
-      padding: 0 10px;
     }
 
-    /* Polaroid Style Photo */
+    /* Polaroid Photo */
     .polaroid {
-      background: #fef8f0;
-      padding: 12px 12px 25px;
-      border-radius: 10px;
-      width: 230px;
+      width: 220px;
+      margin: auto;
+      background: #fff;
+      padding: 12px 12px 35px;
+      border-radius: 8px;
       box-shadow: 0px 12px 30px rgba(0,0,0,0.6);
       transform: rotate(-2deg);
-      position: relative;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
 
     .polaroid img {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 6px;
+      display: block;
     }
 
-    .pin {
-      width: 18px;
-      height: 18px;
-      background: #ffcc8f;
-      border-radius: 50%;
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+    .caption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #111;
+      font-weight: 600;
+      font-family: "Playfair Display", serif;
     }
 
-    /* Secret Chocolate Button */
+    /* Final Button */
     .final-btn {
       display: none;
       margin-top: 35px;
+      padding: 14px 28px;
+      border-radius: 35px;
+      border: none;
+      cursor: pointer;
+      background: #ffcc7a;
+      color: #2a0a0a;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.6);
+      transition: 0.3s;
     }
 
-    /* Film Strip Final Page */
-    .final-page {
+    .final-btn:hover {
+      transform: scale(1.05);
+      background: #ffd999;
+    }
+
+    /* Film Reel */
+    .film-section {
       display: none;
-      margin-top: 70px;
-      animation: fadeIn 1s ease-in-out;
+      margin-top: 55px;
+      padding: 20px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .film-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2.1rem;
+      color: #ffcc7a;
+      margin-bottom: 10px;
+    }
+
+    .film-sub {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
     }
 
     .film-strip {
-      margin: auto;
-      max-width: 900px;
-      background: #0c0c0c;
-      padding: 18px 12px;
-      border-radius: 14px;
-      display: flex;
-      gap: 12px;
+      background: rgba(0,0,0,0.85);
+      border-radius: 18px;
+      padding: 18px 15px;
       overflow-x: auto;
-      box-shadow: 0px 15px 35px rgba(0,0,0,0.7);
-    }
-
-    .film-frame {
-      min-width: 170px;
-      background: #1a1a1a;
-      border-radius: 8px;
-      padding: 8px;
+      white-space: nowrap;
+      border: 2px solid rgba(255,255,255,0.15);
+      box-shadow: 0px 12px 30px rgba(0,0,0,0.75);
       position: relative;
     }
 
-    .film-frame img {
+    /* Film Edge Text */
+    .film-edge {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-family: monospace;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      text-align: center;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+
+    .film-edge.bottom {
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    .film-frames {
+      display: inline-flex;
+      gap: 12px;
+      padding: 5px;
+    }
+
+    .frame {
+      width: 150px;
+      height: 120px;
+      border-radius: 10px;
+      border: 3px solid rgba(255,255,255,0.18);
+      overflow: hidden;
+      display: inline-block;
+      position: relative;
+      filter: contrast(0.9) brightness(0.9);
+    }
+
+    .frame img {
       width: 100%;
-      height: 220px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 6px;
+      display: block;
+      filter: sepia(0.25);
     }
 
     /* Film holes */
-    .film-frame::before,
-    .film-frame::after {
+    .frame::before,
+    .frame::after {
       content: "";
       position: absolute;
       top: 8px;
       bottom: 8px;
-      width: 10px;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 10px,
-        #000 10px,
-        #000 18px
-      );
-      opacity: 0.8;
+      width: 8px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 5px;
     }
 
-    .film-frame::before {
-      left: -12px;
+    .frame::before {
+      left: 6px;
     }
 
-    .film-frame::after {
-      right: -12px;
-    }
-
-    .final-msg {
-      margin-top: 30px;
-      font-size: 1.3rem;
-      line-height: 1.8;
-      color: #ffddb5;
-      max-width: 750px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 15px;
-      font-family: "Playfair Display", serif;
+    .frame::after {
+      right: 6px;
     }
 
     footer {
-      margin-top: 70px;
-      opacity: 0.75;
-      font-size: 0.95rem;
+      margin-top: 55px;
+      font-size: 0.9rem;
+      opacity: 0.7;
     }
 
-    /* Music Control */
     .music-control {
-      margin-top: 30px;
+      margin-top: 25px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.2);
       padding: 10px 18px;
       border-radius: 30px;
-      color: #fff3e6;
+      color: #fff6e9;
       cursor: pointer;
       font-size: 0.95rem;
       transition: 0.3s;
@@ -269,146 +373,212 @@
 
 <body>
 
-  <!-- Music -->
+  <!-- Background Music -->
   <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Chocolate unwrap sound -->
+  <audio id="unwrapSound">
+    <source src="unwrap.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Progress -->
+  <div class="progress" id="progressText">Chocolates opened: 0/6</div>
+
   <!-- Landing -->
   <div class="landing" id="landing">
-    <h1>Ruchi… 🍫</h1>
+    <h1>Ruchi 🍫</h1>
     <p>
-      I know today is Chocolate Day…  
-      but honestly, I wanted to gift you something sweeter than chocolate.  
-      <br><br>
-      Open it slowly 😌❤️
+      I got you a chocolate box today…<br>
+      But every chocolate inside it has something hidden.<br><br>
+      Just for you.
     </p>
-    <button class="btn" onclick="openBox()">Open the Chocolate Box 🎁</button>
+
+    <button class="open-btn" onclick="startOpening()">Open the Chocolate Box 🎁</button>
   </div>
 
-  <!-- Main -->
+  <!-- Opening Animation -->
+  <div class="opening" id="opening">
+    <h2>Opening your box...</h2>
+    <p id="openingText">✨ Unwrapping...</p>
+    <div class="dots">🍫</div>
+  </div>
+
+  <!-- Main Chocolate Section -->
   <div class="main" id="main">
-    <h1 class="box-title">Ruchi’s Chocolate Box 🍫❤️</h1>
-    <p class="subtext">
-      Every chocolate here has a little message…  
-      and a little memory of us.  
-      <br><br>
-      Click them one by one 😌
+    <h2>Happy Chocolate Day, Ruchi 🤎</h2>
+    <p>
+      Tap each chocolate...  
+      each one hides a little reason why I love you.
     </p>
 
-    <div class="choco-box">
-      <div class="choco" onclick="showChoco(0)">🍫 Milk Chocolate</div>
-      <div class="choco" onclick="showChoco(1)">🍫 Dark Chocolate</div>
-      <div class="choco" onclick="showChoco(2)">🍫 Hazelnut</div>
-      <div class="choco" onclick="showChoco(3)">🍫 Caramel</div>
-      <div class="choco" onclick="showChoco(4)">🍫 Strawberry</div>
-      <div class="choco" onclick="showChoco(5)">🍫 Secret Chocolate</div>
+    <div class="choco-grid">
+      <div class="choco" onclick="openChocolate(0, this)">🍫 1</div>
+      <div class="choco" onclick="openChocolate(1, this)">🍫 2</div>
+      <div class="choco" onclick="openChocolate(2, this)">🍫 3</div>
+      <div class="choco" onclick="openChocolate(3, this)">🍫 4</div>
+      <div class="choco" onclick="openChocolate(4, this)">🍫 5</div>
+      <div class="choco" onclick="openChocolate(5, this)">🍫 6</div>
     </div>
 
-    <!-- Popup -->
-    <div class="popup" id="popup">
-      <div class="popup-text" id="popupText"></div>
+    <!-- Reveal -->
+    <div class="reveal-box" id="revealBox">
+      <p id="chocoText"></p>
 
-      <div class="polaroid" id="polaroidBox">
-        <div class="pin"></div>
-        <img id="popupImg" src="" alt="memory">
+      <div class="polaroid" id="polaroid">
+        <img id="chocoImg" src="" alt="photo">
+        <div class="caption" id="captionText">📌 A moment I’ll never forget.</div>
       </div>
     </div>
 
-    <!-- Final Button -->
-    <div class="final-btn" id="finalBtn">
-      <button class="btn" onclick="showFinalPage()">See my favourite memories 🎞️</button>
-    </div>
+    <button class="final-btn" id="finalBtn" onclick="showFilm()">Open the last surprise 🎞️</button>
 
-    <button class="music-control" onclick="toggleMusic()">🎶 Pause / Play Music</button>
-
-    <!-- Final Page -->
-    <div class="final-page" id="finalPage">
-      <h1 style="margin-bottom:25px;">Our Film Reel 🎞️❤️</h1>
+    <!-- Film Reel -->
+    <div class="film-section" id="filmSection">
+      <div class="film-title">A Memory Reel for Ruchi 🎞️</div>
+      <div class="film-sub">This is my favourite film.</div>
 
       <div class="film-strip">
-        <div class="film-frame"><img src="photo1.jpg" /></div>
-        <div class="film-frame"><img src="photo2.jpg" /></div>
-        <div class="film-frame"><img src="photo3.jpg" /></div>
-        <div class="film-frame"><img src="photo4.jpg" /></div>
-        <div class="film-frame"><img src="photo5.jpg" /></div>
-        <div class="film-frame"><img src="photo6.jpg" /></div>
+
+        <div class="film-edge">
+          RUCHI × YASH • 2026 • FOREVER • CHOCOLATE DAY • RUCHI × YASH • 2026 • FOREVER •
+        </div>
+
+        <div class="film-frames">
+          <div class="frame"><img src="photo7.jpg"></div>
+          <div class="frame"><img src="photo8.jpg"></div>
+          <div class="frame"><img src="photo9.jpg"></div>
+          <div class="frame"><img src="photo10.jpg"></div>
+          <div class="frame"><img src="photo11.jpg"></div>
+          <div class="frame"><img src="photo12.jpg"></div>
+        </div>
+
+        <div class="film-edge bottom">
+          RUCHI × YASH • 2026 • FOREVER • CHOCOLATE DAY • RUCHI × YASH • 2026 • FOREVER •
+        </div>
+
       </div>
 
-      <div class="final-msg">
-        Happy Chocolate Day, Ruchi 🍫❤️  
-        <br><br>
-        The sweetest thing isn’t chocolate…  
-        it’s YOU.  
-        <br><br>
-        And I love you more than chocolate…  
-        and that’s serious 😌❤️
-      </div>
+      <footer>
+        Made with love, only for Ruchi 🤎
+      </footer>
     </div>
 
-    <footer>
-      Made with love, only for Ruchi 🍫
-    </footer>
+    <div style="text-align:center;">
+      <button class="music-control" onclick="toggleMusic()">🎶 Pause / Play Music</button>
+    </div>
   </div>
 
   <script>
-    let musicPlaying = false;
-    let clickedSecret = false;
+    let openedCount = 0;
+    let musicStarted = false;
 
-    const messages = [
-      "Milk Chocolate is sweet… but not sweeter than your smile, Ruchi ❤️",
-      "Dark Chocolate is strong… like the way you handle everything so beautifully 😌",
-      "Hazelnut reminds me of surprises… because you always surprise me with how perfect you are 💛",
-      "Caramel is soft and warm… just like the comfort I feel when I talk to you 🥺❤️",
-      "Strawberry is cute and playful… like the way you make my heart feel light 🍓",
-      "Ruchi… the sweetest thing isn’t chocolate… it’s YOU ❤️🍫"
+    const chocolates = [
+      {
+        text: "Ruchi, you’re sweeter than any chocolate in the world 🤎",
+        img: "photo1.jpg"
+      },
+      {
+        text: "Some chocolates melt fast... but my love for you only grows deeper 🍫",
+        img: "photo2.jpg"
+      },
+      {
+        text: "Ruchi, you make even the simplest moments feel magical ✨",
+        img: "photo3.jpg"
+      },
+      {
+        text: "If I could gift you a chocolate for every time I missed you... you’d have a whole universe 🎁",
+        img: "photo4.jpg"
+      },
+      {
+        text: "You’re my favourite addiction, Ruchi... and I don’t want the cure 😌🤎",
+        img: "photo5.jpg"
+      },
+      {
+        text: "Every bite of chocolate reminds me of one thing... I want you forever ❤️",
+        img: "photo6.jpg"
+      }
     ];
 
-    const images = [
-      "photo1.jpg",
-      "photo2.jpg",
-      "photo3.jpg",
-      "photo4.jpg",
-      "photo5.jpg",
-      "photo6.jpg"
-    ];
-
-    function openBox() {
+    function startOpening() {
       document.getElementById("landing").style.display = "none";
-      document.getElementById("main").style.display = "block";
+      document.getElementById("opening").style.display = "flex";
 
-      const music = document.getElementById("bgMusic");
-      music.play().catch(() => {});
-      musicPlaying = true;
+      startMusic();
+
+      const openingText = document.getElementById("openingText");
+
+      setTimeout(() => {
+        openingText.innerText = "🎀 Ribbon removed...";
+      }, 900);
+
+      setTimeout(() => {
+        openingText.innerText = "🍫 Opening the lid...";
+      }, 1800);
+
+      setTimeout(() => {
+        document.getElementById("opening").style.display = "none";
+        document.getElementById("main").style.display = "block";
+        document.getElementById("progressText").style.display = "block";
+      }, 2700);
     }
 
-    function showChoco(index) {
-      document.getElementById("popup").style.display = "flex";
-      document.getElementById("popupText").innerText = messages[index];
-      document.getElementById("popupImg").src = images[index];
-
-      if (index === 5) {
-        clickedSecret = true;
-        document.getElementById("finalBtn").style.display = "block";
+    function startMusic() {
+      if (!musicStarted) {
+        const music = document.getElementById("bgMusic");
+        music.play().catch(() => {});
+        musicStarted = true;
       }
     }
 
-    function showFinalPage() {
-      if (clickedSecret) {
-        document.getElementById("finalPage").style.display = "block";
-        document.getElementById("finalPage").scrollIntoView({ behavior: "smooth" });
+    function openChocolate(index, element) {
+      if (element.classList.contains("opened")) return;
+
+      startMusic();
+
+      // Unwrap sound (optional)
+      const unwrap = document.getElementById("unwrapSound");
+      unwrap.currentTime = 0;
+      unwrap.play().catch(() => {});
+
+      element.classList.add("opened");
+
+      openedCount++;
+      document.getElementById("progressText").innerText =
+        "Chocolates opened: " + openedCount + "/6";
+
+      const revealBox = document.getElementById("revealBox");
+      const polaroid = document.getElementById("polaroid");
+
+      document.getElementById("chocoText").innerText = chocolates[index].text;
+      document.getElementById("chocoImg").src = chocolates[index].img;
+
+      revealBox.style.display = "block";
+      polaroid.style.opacity = "0";
+
+      setTimeout(() => {
+        polaroid.style.opacity = "1";
+      }, 400);
+
+      // Secret unlock mechanism (not visible)
+      if (openedCount === 6) {
+        setTimeout(() => {
+          document.getElementById("finalBtn").style.display = "inline-block";
+        }, 600);
       }
+    }
+
+    function showFilm() {
+      document.getElementById("finalBtn").style.display = "none";
+      document.getElementById("filmSection").style.display = "block";
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }
 
     function toggleMusic() {
       const music = document.getElementById("bgMusic");
-      if (musicPlaying) {
-        music.pause();
-        musicPlaying = false;
-      } else {
-        music.play();
-        musicPlaying = true;
-      }
+      if (music.paused) music.play();
+      else music.pause();
     }
   </script>
 
