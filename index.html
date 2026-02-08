@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Chocolate Day Ruchi 🍫❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: radial-gradient(circle at top, #3b1f14, #120805);
+      color: #fff3e6;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      color: #ffcc8f;
+      letter-spacing: 1px;
+    }
+
+    /* Landing */
+    .landing {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .landing h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .landing p {
+      max-width: 520px;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    .btn {
+      margin-top: 25px;
+      background: #ffcc8f;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #120805;
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.6);
+    }
+
+    .btn:hover {
+      transform: scale(1.06);
+      background: #ffd9ab;
+    }
+
+    /* Main Chocolate Box */
+    .main {
+      display: none;
+      padding: 50px 15px 80px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0px); }
+    }
+
+    .box-title {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .subtext {
+      max-width: 650px;
+      margin: auto;
+      font-size: 1.1rem;
+      opacity: 0.9;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .choco-box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      max-width: 520px;
+      margin: auto;
+    }
+
+    .choco {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 22px 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1.05rem;
+      font-weight: 500;
+      box-shadow: 0px 12px 28px rgba(0,0,0,0.55);
+    }
+
+    .choco:hover {
+      transform: scale(1.05);
+      background: rgba(255, 204, 143, 0.15);
+      border: 1px solid rgba(255, 204, 143, 0.5);
+    }
+
+    /* Message Popup Area */
+    .popup {
+      margin-top: 40px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .popup-text {
+      max-width: 650px;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #fff3e6;
+      padding: 0 10px;
+    }
+
+    /* Polaroid Style Photo */
+    .polaroid {
+      background: #fef8f0;
+      padding: 12px 12px 25px;
+      border-radius: 10px;
+      width: 230px;
+      box-shadow: 0px 12px 30px rgba(0,0,0,0.6);
+      transform: rotate(-2deg);
+      position: relative;
+    }
+
+    .polaroid img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .pin {
+      width: 18px;
+      height: 18px;
+      background: #ffcc8f;
+      border-radius: 50%;
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.4);
+    }
+
+    /* Secret Chocolate Button */
+    .final-btn {
+      display: none;
+      margin-top: 35px;
+    }
+
+    /* Film Strip Final Page */
+    .final-page {
+      display: none;
+      margin-top: 70px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .film-strip {
+      margin: auto;
+      max-width: 900px;
+      background: #0c0c0c;
+      padding: 18px 12px;
+      border-radius: 14px;
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      box-shadow: 0px 15px 35px rgba(0,0,0,0.7);
+    }
+
+    .film-frame {
+      min-width: 170px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 8px;
+      position: relative;
+    }
+
+    .film-frame img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Film holes */
+    .film-frame::before,
+    .film-frame::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      width: 10px;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 10px,
+        #000 10px,
+        #000 18px
+      );
+      opacity: 0.8;
+    }
+
+    .film-frame::before {
+      left: -12px;
+    }
+
+    .film-frame::after {
+      right: -12px;
+    }
+
+    .final-msg {
+      margin-top: 30px;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: #ffddb5;
+      max-width: 750px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 15px;
+      font-family: "Playfair Display", serif;
+    }
+
+    footer {
+      margin-top: 70px;
+      opacity: 0.75;
+      font-size: 0.95rem;
+    }
+
+    /* Music Control */
+    .music-control {
+      margin-top: 30px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 18px;
+      border-radius: 30px;
+      color: #fff3e6;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .music-control:hover {
+      background: rgba(255,255,255,0.18);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Music -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Landing -->
+  <div class="landing" id="landing">
+    <h1>Ruchi… 🍫</h1>
+    <p>
+      I know today is Chocolate Day…  
+      but honestly, I wanted to gift you something sweeter than chocolate.  
+      <br><br>
+      Open it slowly 😌❤️
+    </p>
+    <button class="btn" onclick="openBox()">Open the Chocolate Box 🎁</button>
+  </div>
+
+  <!-- Main -->
+  <div class="main" id="main">
+    <h1 class="box-title">Ruchi’s Chocolate Box 🍫❤️</h1>
+    <p class="subtext">
+      Every chocolate here has a little message…  
+      and a little memory of us.  
+      <br><br>
+      Click them one by one 😌
+    </p>
+
+    <div class="choco-box">
+      <div class="choco" onclick="showChoco(0)">🍫 Milk Chocolate</div>
+      <div class="choco" onclick="showChoco(1)">🍫 Dark Chocolate</div>
+      <div class="choco" onclick="showChoco(2)">🍫 Hazelnut</div>
+      <div class="choco" onclick="showChoco(3)">🍫 Caramel</div>
+      <div class="choco" onclick="showChoco(4)">🍫 Strawberry</div>
+      <div class="choco" onclick="showChoco(5)">🍫 Secret Chocolate</div>
+    </div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+      <div class="popup-text" id="popupText"></div>
+
+      <div class="polaroid" id="polaroidBox">
+        <div class="pin"></div>
+        <img id="popupImg" src="" alt="memory">
+      </div>
+    </div>
+
+    <!-- Final Button -->
+    <div class="final-btn" id="finalBtn">
+      <button class="btn" onclick="showFinalPage()">See my favourite memories 🎞️</button>
+    </div>
+
+    <button class="music-control" onclick="toggleMusic()">🎶 Pause / Play Music</button>
+
+    <!-- Final Page -->
+    <div class="final-page" id="finalPage">
+      <h1 style="margin-bottom:25px;">Our Film Reel 🎞️❤️</h1>
+
+      <div class="film-strip">
+        <div class="film-frame"><img src="photo1.jpg" /></div>
+        <div class="film-frame"><img src="photo2.jpg" /></div>
+        <div class="film-frame"><img src="photo3.jpg" /></div>
+        <div class="film-frame"><img src="photo4.jpg" /></div>
+        <div class="film-frame"><img src="photo5.jpg" /></div>
+        <div class="film-frame"><img src="photo6.jpg" /></div>
+      </div>
+
+      <div class="final-msg">
+        Happy Chocolate Day, Ruchi 🍫❤️  
+        <br><br>
+        The sweetest thing isn’t chocolate…  
+        it’s YOU.  
+        <br><br>
+        And I love you more than chocolate…  
+        and that’s serious 😌❤️
+      </div>
+    </div>
+
+    <footer>
+      Made with love, only for Ruchi 🍫
+    </footer>
+  </div>
+
+  <script>
+    let musicPlaying = false;
+    let clickedSecret = false;
+
+    const messages = [
+      "Milk Chocolate is sweet… but not sweeter than your smile, Ruchi ❤️",
+      "Dark Chocolate is strong… like the way you handle everything so beautifully 😌",
+      "Hazelnut reminds me of surprises… because you always surprise me with how perfect you are 💛",
+      "Caramel is soft and warm… just like the comfort I feel when I talk to you 🥺❤️",
+      "Strawberry is cute and playful… like the way you make my heart feel light 🍓",
+      "Ruchi… the sweetest thing isn’t chocolate… it’s YOU ❤️🍫"
+    ];
+
+    const images = [
+      "photo1.jpg",
+      "photo2.jpg",
+      "photo3.jpg",
+      "photo4.jpg",
+      "photo5.jpg",
+      "photo6.jpg"
+    ];
+
+    function openBox() {
+      document.getElementById("landing").style.display = "none";
+      document.getElementById("main").style.display = "block";
+
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {});
+      musicPlaying = true;
+    }
+
+    function showChoco(index) {
+      document.getElementById("popup").style.display = "flex";
+      document.getElementById("popupText").innerText = messages[index];
+      document.getElementById("popupImg").src = images[index];
+
+      if (index === 5) {
+        clickedSecret = true;
+        document.getElementById("finalBtn").style.display = "block";
+      }
+    }
+
+    function showFinalPage() {
+      if (clickedSecret) {
+        document.getElementById("finalPage").style.display = "block";
+        document.getElementById("finalPage").scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bgMusic");
+      if (musicPlaying) {
+        music.pause();
+        musicPlaying = false;
+      } else {
+        music.play();
+        musicPlaying = true;
+      }
+    }
+  </script>
+
+</body>
+</html>
