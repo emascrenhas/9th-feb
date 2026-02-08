@@ -532,46 +532,50 @@
       }
     }
 
-    function openChocolate(index, element) {
-      if (element.classList.contains("opened")) return;
+    let openedSet = new Set();
 
-      startMusic();
+function openChocolate(index, element) {
+  startMusic();
 
-      // Unwrap sound (optional)
-      const unwrap = document.getElementById("unwrapSound");
-      unwrap.currentTime = 0;
-      unwrap.play().catch(() => {});
+  // unwrap sound (optional)
+  const unwrap = document.getElementById("unwrapSound");
+  unwrap.currentTime = 0;
+  unwrap.play().catch(() => {});
 
-      element.classList.add("opened");
+  // Reveal content
+  const revealBox = document.getElementById("revealBox");
+  const polaroid = document.getElementById("polaroid");
 
-      openedCount++;
-      document.getElementById("progressText").innerText =
-        "Chocolates opened: " + openedCount + "/6";
+  document.getElementById("chocoText").innerText = chocolates[index].text;
+  document.getElementById("chocoImg").src = chocolates[index].img;
 
-      const revealBox = document.getElementById("revealBox");
-      const polaroid = document.getElementById("polaroid");
+  revealBox.style.display = "block";
+  polaroid.style.opacity = "0";
 
-      document.getElementById("chocoText").innerText = chocolates[index].text;
-      document.getElementById("chocoImg").src = chocolates[index].img;
+  setTimeout(() => {
+    polaroid.style.opacity = "1";
+  }, 400);
 
-      revealBox.style.display = "block";
-      polaroid.style.opacity = "0";
+  // Count progress only once per chocolate
+  if (!openedSet.has(index)) {
+    openedSet.add(index);
 
+    document.getElementById("progressText").innerText =
+      "Chocolates opened: " + openedSet.size + "/6";
+
+    // Unlock final button only after all unique opened
+    if (openedSet.size === 6) {
       setTimeout(() => {
-        polaroid.style.opacity = "1";
-      }, 400);
-
-      // Secret unlock mechanism (not visible)
-      if (openedCount === 6) {
-        setTimeout(() => {
-          document.getElementById("finalBtn").style.display = "inline-block";
-        }, 600);
-      }
+        document.getElementById("finalBtn").style.display = "inline-block";
+      }, 600);
     }
+  }
+}
 
     function showFilm() {
       document.getElementById("finalBtn").style.display = "none";
       document.getElementById("filmSection").style.display = "block";
+      startFilmAutoScroll();
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }
 
@@ -580,6 +584,41 @@
       if (music.paused) music.play();
       else music.pause();
     }
+    
+    let autoScrollInterval;
+let resumeTimeout;
+
+function startFilmAutoScroll() {
+  const filmStrip = document.querySelector(".film-strip");
+
+  autoScrollInterval = setInterval(() => {
+    filmStrip.scrollLeft += 1;
+
+    // Loop effect (when it reaches end, it goes back smoothly)
+    if (filmStrip.scrollLeft + filmStrip.clientWidth >= filmStrip.scrollWidth) {
+      filmStrip.scrollLeft = 0;
+    }
+  }, 20);
+}
+
+function pauseFilmAutoScroll() {
+  clearInterval(autoScrollInterval);
+
+  // Restart auto-scroll after 3 seconds of no interaction
+  clearTimeout(resumeTimeout);
+  resumeTimeout = setTimeout(() => {
+    startFilmAutoScroll();
+  }, 3000);
+}
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const filmStrip = document.querySelector(".film-strip");
+
+  filmStrip.addEventListener("touchstart", pauseFilmAutoScroll);
+  filmStrip.addEventListener("mousedown", pauseFilmAutoScroll);
+  filmStrip.addEventListener("wheel", pauseFilmAutoScroll);
+});
+
   </script>
 
 </body>
